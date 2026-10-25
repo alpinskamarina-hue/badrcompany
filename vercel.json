@@ -4,5 +4,9 @@
   "installCommand": "",
   "framework": null,
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/:path*", "has": [{ "type": "host", "value": "badr-company.vercel.app" }], "destination": "https://www.badrcompany.nl/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "badr-company-habibi9.vercel.app" }], "destination": "https://www.badrcompany.nl/:path*", "permanent": true }
+  ]
 }

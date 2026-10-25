@@ -2,7 +2,7 @@
 // Each fragment starts with a <!-- key: value --> header (title, desc, path, alt, nav, scripts, ...).
 const fs = require('fs'), path = require('path');
 const ROOT = __dirname, SRC = path.join(ROOT, 'src'), OUT = path.join(ROOT, 'dist'), STATIC = path.join(ROOT, 'static');
-const SITE = 'https://badr-company.vercel.app';
+const SITE = 'https://www.badrcompany.nl';
 // Legal company details from company.json (ACM: shown on every page). Empty values are left out until known.
 const CO = Object.assign({ name: 'Badr Company', kvk: '', btw: '', street: '', postcode: '', city: 'Zwolle' }, fs.existsSync(path.join(ROOT, 'company.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'company.json'), 'utf8')) : {});
 const coAddr = () => [CO.street, [CO.postcode, CO.city].filter(Boolean).join(' ')].filter(Boolean).join(', ');

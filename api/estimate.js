@@ -20,7 +20,7 @@ const hits = new Map(); // best effort, per server instance
 
 function allowedOrigin(o) {
   if (!o) return true;
-  const list = (process.env.ALLOWED_ORIGINS || 'https://badr-company.vercel.app,https://badr-company-habibi9.vercel.app').split(',').map(s => s.trim());
+  const list = (process.env.ALLOWED_ORIGINS || 'https://www.badrcompany.nl,https://badrcompany.nl,https://badr-company.vercel.app,https://badr-company-habibi9.vercel.app').split(',').map(s => s.trim());
   return list.includes(o) || /^https:\/\/badr-company-[a-z0-9]+-habibi9\.vercel\.app$/.test(o);
 }
 function limited(ip) {
