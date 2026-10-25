@@ -1,0 +1,85 @@
+<!--
+title: Prijzen en prijscalculator
+desc: Bereken direct de arbeidskosten voor stucwerk, gipsplaten, tegelwerk, vloeren, schilderwerk, badkamer of dakkapel. € 54,50 per uur incl. 9% btw of € 60,50 incl. 21% btw (€ 50 excl. btw), voorrijkosten inbegrepen.
+path: /prijzen
+alt: /en/prices
+nav: prijzen
+scripts: s5
+-->
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Prijzen</span></nav>
+    <h1>Eerlijke prijzen</h1>
+    <p class="lead">We rekenen per uur, met een vaste prijs in de offerte. Hieronder ziet u direct wat het werk ongeveer kost. Liever meteen een offerte op maat? <a href="/offerte" style="color:var(--yellow)">Vraag hem gratis aan</a>.</p>
+    <div class="hero-facts"><span>€ 54,50 – € 60,50 per uur incl. btw</span><span>€ 50 excl. btw</span><span>Voorrijkosten inbegrepen</span><span>Minimaal 4 uur</span><span>Materialen apart</span></div>
+  </div>
+</section>
+
+<section class="calc" id="calculator" aria-labelledby="hcalc" style="padding-top:56px">
+  <div class="wrap">
+    <div class="center">
+      <p class="kicker">Prijscalculator</p>
+      <h2 class="title-xl" id="hcalc">Wat kost het werk?</h2>
+      <p class="lead">Vul de maten in en zie direct een indicatie van de arbeidskosten. Materialen zijn niet inbegrepen.</p>
+    </div>
+    <div class="calc-tabs" role="tablist" id="calcTabs" aria-label="Kies een dienst"></div>
+    <div class="calc-grid">
+      <div class="calc-left">
+        <div class="photo-box" id="photoBox" hidden>
+          <div class="pb-head"><span class="pb-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><div><p class="pb-title"></p><p class="pb-sub"></p></div></div>
+          <div class="pb-status" aria-live="polite"></div>
+          <div class="pb-row">
+            <div class="btn btn-white pb-pick"><span></span><input type="file" id="photoInput" multiple accept="image/*" aria-label="Foto's kiezen"></div>
+            <button type="button" class="btn btn-yellow pb-go"></button>
+            <button type="button" class="btn btn-ghost pb-stop"></button>
+          </div>
+          <div class="pb-thumbs"></div>
+          <p class="pb-tip"></p>
+          <div class="pb-app" hidden><p class="pb-app-t"></p><div class="copyable"><span class="pb-url"></span><button type="button" class="copy-btn pb-copy"></button></div></div>
+        </div>
+        <div class="calc-panel" id="calcPanel"></div>
+      </div>
+      <aside class="calc-result" aria-live="polite">
+        <p class="cr-label" id="crLabel">Arbeidskosten</p>
+        <p class="cr-price"><span id="crFrom">vanaf</span> <b id="crPrice">€ 0</b></p>
+        <p class="cr-vat" id="crVat">incl. btw</p>
+        <dl class="cr-break" id="crBreak"></dl>
+        <p class="cr-note" id="crNote"></p>
+        <button type="button" class="btn btn-yellow" id="crCta" style="width:100%">Vraag exacte offerte aan</button>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Zo rekenen wij</p>
+    <h2 class="title-md">Wat zit er in de prijs?</h2>
+    <div class="values">
+      <div class="value"><h3>Uurtarief</h3><p>€ 50 per uur exclusief btw. Voor particulieren is dat € 54,50 inclusief 9% btw (stucwerk en schilderwerk in woningen ouder dan 2 jaar) of € 60,50 inclusief 21% btw (overig werk). De calculator rekent met gemiddelde werktijden per m². In de offerte staat een vaste prijs, geen open eind.</p></div>
+      <div class="value"><h3>Btw</h3><p>Voor arbeid aan stucwerk en schilderwerk in een woning ouder dan 2 jaar geldt 9% btw. Voor ander werk, zoals tegels, vloeren en gipswanden, geldt 21%. <a href="/blog/btw-verbouwing-9-of-21">Lees meer</a>.</p></div>
+      <div class="value"><h3>Materialen</h3><p>Materialen staan apart in de offerte. U kunt ze zelf kopen of wij bestellen ze voor u, zonder verborgen opslag.</p></div>
+      <div class="value"><h3>Voorrijkosten</h3><p>Inbegrepen, overal in Nederland. Bij werk ver buiten de regio Zwolle spreken we vooraf af hoe we de reistijd plannen.</p></div>
+      <div class="value"><h3>Minimum</h3><p>Per opdracht rekenen we minimaal 4 uur arbeid. Kleine klussen combineren we graag in één bezoek.</p></div>
+      <div class="value"><h3>Meerwerk</h3><p>Alleen na uw akkoord. Komen we iets tegen, dan krijgt u eerst foto's en een prijs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div><h2>Een vaste prijs op papier?</h2><p>Gratis opname in heel Nederland. Binnen één werkdag reactie.</p></div>
+    <a class="btn btn-dark" href="/offerte" style="padding:18px 28px;font-size:17px">Gratis offerte aanvragen</a>
+  </div>
+</section>
+<script>
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('#crCta');if(!b)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  var keys=['stuc','gips','tegel','vloer','verf','bad','dak'],tabs=[].slice.call(document.querySelectorAll('#calcTabs .calc-tab'));
+  var i=Math.max(0,tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true';})),k=keys[i];
+  function v(id){var el=document.getElementById('c_'+k+'_'+id);return el?parseFloat(String(el.value).replace(',','.'))||0:0;}
+  var a=v('L')*v('B')||v('floorM2')||v('wallLen')*v('wallH')||v('dWidth')*2||25;a=Math.round(Math.min(200,Math.max(2,a)));
+  location.href=(document.documentElement.lang==='en'?'/en/quote':'/offerte')+'?werk=w'+(i+1)+'&m2='+a;
+},true);
+</script>

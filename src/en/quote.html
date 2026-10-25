@@ -1,0 +1,112 @@
+<!--
+title: Request a free quote
+desc: Request a free quote in six short steps for plastering, drywall, tiling, flooring, painting, a bathroom or a dormer. Reply within one working day.
+path: /en/quote
+alt: /offerte
+nav: offerte
+-->
+<section class="aanvraag" aria-labelledby="haanv">
+  <div class="wrap">
+    <div class="aanv-intro">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/en">Home</a><span>/</span><span>Quote</span></nav>
+      <p class="kicker" style="margin-top:22px">Request a quote</p>
+      <h1 class="title-xl" id="haanv">Free quote</h1>
+      <p class="lead">Answer six short questions. Then send your request with one tap via WhatsApp or email. We reply within one working day.</p>
+      <div class="chips"><span>Fixed price up front</span><span>Left broom-clean</span><span>No extra work without your approval</span></div>
+      <div class="aanv-side">
+        <p><b>1. Reply within one working day.</b> We call or message you to make an appointment.</p>
+        <p><b>2. Free site visit.</b> We measure everything and discuss your wishes.</p>
+        <p><b>3. Quote within 48 hours.</b> Fixed price per item, with materials and schedule.</p>
+        <p>Want a price estimate first? <a href="/en/prices" style="color:var(--yellow)">Use the price calculator</a>.</p>
+      </div>
+    </div>
+    <form class="quote" id="offerte" novalidate aria-labelledby="qTitle">
+      <p class="step-label" id="stepLabel">Step 1 of 6</p>
+      <div class="progress" aria-hidden="true"><i id="bar" style="width:17%">17%</i></div>
+      <div id="steps">
+        <fieldset class="qstep" data-step="1" style="border:0;padding:0;margin:0">
+          <h2 class="q-h" id="qTitle">What would you like done? <span class="req">*</span></h2>
+          <div class="opts">
+            <div class="opt"><input type="checkbox" id="w1" name="werk" value="Stucwerk"><label for="w1">Plastering</label></div>
+            <div class="opt"><input type="checkbox" id="w2" name="werk" value="Gipsplaten / wanden"><label for="w2">Drywall &amp; partitions</label></div>
+            <div class="opt"><input type="checkbox" id="w3" name="werk" value="Tegelwerk"><label for="w3">Tiling</label></div>
+            <div class="opt"><input type="checkbox" id="w4" name="werk" value="Vloeren"><label for="w4">Flooring</label></div>
+            <div class="opt"><input type="checkbox" id="w5" name="werk" value="Schilderwerk"><label for="w5">Painting</label></div>
+            <div class="opt"><input type="checkbox" id="w6" name="werk" value="Badkamer compleet"><label for="w6">Complete bathroom</label></div>
+            <div class="opt"><input type="checkbox" id="w7" name="werk" value="Dakkapel"><label for="w7">Dormer</label></div>
+          </div>
+        </fieldset>
+        <fieldset class="qstep" data-step="2" hidden style="border:0;padding:0;margin:0">
+          <h2 class="q-h">Which room is it? <span class="req">*</span></h2>
+          <div class="opts">
+            <div class="opt"><input type="radio" id="r1" name="ruimte" value="Woonkamer"><label for="r1">Living room</label></div>
+            <div class="opt"><input type="radio" id="r2" name="ruimte" value="Slaapkamer"><label for="r2">Bedroom</label></div>
+            <div class="opt"><input type="radio" id="r3" name="ruimte" value="Keuken"><label for="r3">Kitchen</label></div>
+            <div class="opt"><input type="radio" id="r4" name="ruimte" value="Badkamer / toilet"><label for="r4">Bathroom / toilet</label></div>
+            <div class="opt"><input type="radio" id="r5" name="ruimte" value="Hele woning"><label for="r5">Whole house</label></div>
+            <div class="opt"><input type="radio" id="r6" name="ruimte" value="Bedrijfsruimte"><label for="r6">Commercial space</label></div>
+          </div>
+        </fieldset>
+        <fieldset class="qstep" data-step="3" hidden style="border:0;padding:0;margin:0">
+          <h2 class="q-h">Roughly how many square metres?</h2>
+          <p class="range-out"><output id="m2out" for="m2">25</output> <small>m² floor area</small></p>
+          <input type="range" id="m2" min="2" max="200" value="25" step="1" aria-label="Floor area in square metres">
+          <p class="note">An estimate is fine. We measure everything exactly on site.</p>
+        </fieldset>
+        <fieldset class="qstep" data-step="4" hidden style="border:0;padding:0;margin:0">
+          <h2 class="q-h">When would you like to start? <span class="req">*</span></h2>
+          <div class="opts">
+            <div class="opt"><input type="radio" id="t1" name="start" value="Zo snel mogelijk"><label for="t1">As soon as possible</label></div>
+            <div class="opt"><input type="radio" id="t2" name="start" value="Binnen 1 maand"><label for="t2">Within 1 month</label></div>
+            <div class="opt"><input type="radio" id="t3" name="start" value="Binnen 3 maanden"><label for="t3">Within 3 months</label></div>
+            <div class="opt"><input type="radio" id="t4" name="start" value="Ik oriënteer me nog"><label for="t4">Just exploring</label></div>
+          </div>
+        </fieldset>
+        <fieldset class="qstep" data-step="5" hidden style="border:0;padding:0;margin:0">
+          <h2 class="q-h">Your details <span class="req">*</span></h2>
+          <div class="field"><label for="naam">Name</label><input id="naam" autocomplete="name" placeholder="E.g. John Smith"></div>
+          <div class="field"><label for="tel">Phone</label><input id="tel" type="tel" autocomplete="tel" placeholder="06 12 34 56 78"></div>
+          <p class="note">We only use your details to contact you about this request. See the <a href="/en/privacy">privacy statement</a>. Our quotes are subject to our <a href="/en/terms">terms and conditions</a>.</p>
+        </fieldset>
+        <fieldset class="qstep" data-step="6" hidden style="border:0;padding:0;margin:0">
+          <h2 class="q-h">Your request is ready</h2>
+          <div class="summary" id="summary"></div>
+          <input type="text" id="hp_web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+          <div class="send-row">
+            <button type="button" class="btn btn-yellow" id="sendLead">Send request</button>
+            <a class="btn btn-dark" id="sendWa" href="https://wa.me/31634253000" target="_blank" rel="noopener">Send via WhatsApp</a>
+          </div>
+          <p class="note" id="leadStatus" role="status" aria-live="polite"></p>
+          <button type="button" class="btn btn-ghost" id="copySummary" style="width:100%;margin-top:10px">Copy request</button>
+          <p class="note" id="copyNote">Or call us directly: +31 6 34 25 30 00. You'll hear from us within 1 working day.</p>
+        </fieldset>
+      </div>
+      <p class="err" id="err" role="alert"></p>
+      <div class="nav-row">
+        <button type="button" class="btn btn-ghost" id="prev" hidden>Back</button>
+        <button type="submit" class="btn btn-dark" id="next">Next</button>
+      </div>
+    </form>
+  </div>
+</section>
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('#sendWa');if(!a)return;
+  var t=(document.getElementById('summary')||{}).textContent||'';
+  a.href='https://wa.me/31634253000?text='+encodeURIComponent(t);
+},true);
+(function(){
+  var b=document.getElementById('sendLead'),st=document.getElementById('leadStatus');if(!b)return;
+  b.addEventListener('click',function(){
+    if(b.disabled)return;
+    var t=(document.getElementById('summary')||{}).textContent||'',g=function(id){var el=document.getElementById(id);return el?el.value.trim():'';};
+    if(document.getElementById('hp_web')&&document.getElementById('hp_web').value)return;
+    b.disabled=true;st.style.color='';st.textContent='Sending…';
+    fetch('https://formsubmit.co/ajax/alpinskamarina@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'New quote request via the website (EN): '+g('naam'),_template:'box',Naam:g('naam'),Telefoon:g('tel'),Taal:'EN',Aanvraag:t})})
+    .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||String(j.success)==='false')throw new Error(j.message||r.status);});})
+    .then(function(){st.style.color='#1f7a3a';st.textContent='Thank you! Your request has been sent. You’ll hear from us within 1 working day.';b.textContent='Sent ✓';})
+    .catch(function(){b.disabled=false;st.style.color='#b3261e';st.textContent='Sending failed. Please send the request via WhatsApp or call +31 6 34 25 30 00.';});
+  });
+})();
+</script>

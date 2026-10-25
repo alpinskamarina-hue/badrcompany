@@ -1,0 +1,85 @@
+<!--
+title: Prices and price calculator
+desc: Instantly calculate the labour cost for plastering, drywall, tiling, flooring, painting, a bathroom or a dormer. € 54.50 per hour incl. 9% VAT or € 60.50 incl. 21% VAT (€ 50 excl. VAT), travel costs included.
+path: /en/prices
+alt: /prijzen
+nav: prijzen
+scripts: s5
+-->
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/en">Home</a><span>/</span><span>Prices</span></nav>
+    <h1>Honest prices</h1>
+    <p class="lead">We charge by the hour, with a fixed price in the quote. Below you can see right away what the work will roughly cost. Prefer a tailored quote straight away? <a href="/en/quote" style="color:var(--yellow)">Request one for free</a>.</p>
+    <div class="hero-facts"><span>€ 54.50 – € 60.50 per hour incl. VAT</span><span>€ 50 excl. VAT</span><span>Travel costs included</span><span>Minimum 4 hours</span><span>Materials separate</span></div>
+  </div>
+</section>
+
+<section class="calc" id="calculator" aria-labelledby="hcalc" style="padding-top:56px">
+  <div class="wrap">
+    <div class="center">
+      <p class="kicker">Price calculator</p>
+      <h2 class="title-xl" id="hcalc">What will the work cost?</h2>
+      <p class="lead">Enter the measurements and instantly see an estimate of the labour cost. Materials are not included.</p>
+    </div>
+    <div class="calc-tabs" role="tablist" id="calcTabs" aria-label="Choose a service"></div>
+    <div class="calc-grid">
+      <div class="calc-left">
+        <div class="photo-box" id="photoBox" hidden>
+          <div class="pb-head"><span class="pb-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><div><p class="pb-title"></p><p class="pb-sub"></p></div></div>
+          <div class="pb-status" aria-live="polite"></div>
+          <div class="pb-row">
+            <div class="btn btn-white pb-pick"><span></span><input type="file" id="photoInput" multiple accept="image/*" aria-label="Choose photos"></div>
+            <button type="button" class="btn btn-yellow pb-go"></button>
+            <button type="button" class="btn btn-ghost pb-stop"></button>
+          </div>
+          <div class="pb-thumbs"></div>
+          <p class="pb-tip"></p>
+          <div class="pb-app" hidden><p class="pb-app-t"></p><div class="copyable"><span class="pb-url"></span><button type="button" class="copy-btn pb-copy"></button></div></div>
+        </div>
+        <div class="calc-panel" id="calcPanel"></div>
+      </div>
+      <aside class="calc-result" aria-live="polite">
+        <p class="cr-label" id="crLabel">Labour cost</p>
+        <p class="cr-price"><span id="crFrom">from</span> <b id="crPrice">€ 0</b></p>
+        <p class="cr-vat" id="crVat">incl. VAT</p>
+        <dl class="cr-break" id="crBreak"></dl>
+        <p class="cr-note" id="crNote"></p>
+        <button type="button" class="btn btn-yellow" id="crCta" style="width:100%">Request an exact quote</button>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">How we calculate</p>
+    <h2 class="title-md">What's in the price?</h2>
+    <div class="values">
+      <div class="value"><h3>Hourly rate</h3><p>€ 50 per hour excluding VAT. For private customers that is € 54.50 including 9% VAT (plastering and painting in homes older than 2 years) or € 60.50 including 21% VAT (other work). The calculator uses average working times per m². The quote contains a fixed price, not an open-ended bill.</p></div>
+      <div class="value"><h3>VAT</h3><p>Labour for plastering and painting in a home older than 2 years is 9% VAT. Other work, such as tiles, floors and drywall partitions, is 21%. <a href="/en/blog/vat-renovation-9-or-21">Read more</a>.</p></div>
+      <div class="value"><h3>Materials</h3><p>Materials are listed separately in the quote. You can buy them yourself or we order them for you, without hidden mark-up.</p></div>
+      <div class="value"><h3>Travel costs</h3><p>Included, anywhere in the Netherlands. For work far outside the Zwolle region we agree in advance how we plan the travel time.</p></div>
+      <div class="value"><h3>Minimum</h3><p>We charge a minimum of 4 hours of labour per job. We're happy to combine small jobs in one visit.</p></div>
+      <div class="value"><h3>Extra work</h3><p>Only with your approval. If we come across something, you get photos and a price first.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div><h2>A fixed price on paper?</h2><p>Free site visit anywhere in the Netherlands. Reply within one working day.</p></div>
+    <a class="btn btn-dark" href="/en/quote" style="padding:18px 28px;font-size:17px">Request a free quote</a>
+  </div>
+</section>
+<script>
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('#crCta');if(!b)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  var keys=['stuc','gips','tegel','vloer','verf','bad','dak'],tabs=[].slice.call(document.querySelectorAll('#calcTabs .calc-tab'));
+  var i=Math.max(0,tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true';})),k=keys[i];
+  function v(id){var el=document.getElementById('c_'+k+'_'+id);return el?parseFloat(String(el.value).replace(',','.'))||0:0;}
+  var a=v('L')*v('B')||v('floorM2')||v('wallLen')*v('wallH')||v('dWidth')*2||25;a=Math.round(Math.min(200,Math.max(2,a)));
+  location.href=(document.documentElement.lang==='en'?'/en/quote':'/offerte')+'?werk=w'+(i+1)+'&m2='+a;
+},true);
+</script>
