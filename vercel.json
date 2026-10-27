@@ -1,5 +1,5 @@
 {
-  "buildCommand": "node patch.js && node build.js && node hero-video.js && node fix-video.js && node rates.js",
+  "buildCommand": "node patch.js && node build.js && node hero-video.js && node fix-video.js && node rates.js && node reviews.js",
   "outputDirectory": "dist",
   "installCommand": "",
   "framework": null,
