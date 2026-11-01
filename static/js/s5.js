@@ -5,7 +5,7 @@
     stuc:{saus:15,behang:11,spachtel:14,ceil:18},                       // per m²
     gips:{voorzet:32,scheid:45,insul:6,joints:6,door:75,ceil:38},         // per m², deuropening per stuk
     tegel:{wall:35,floor:38,fGroot:12,fStd:0,fKlein:20,remove:12,plint:10,jolly:6}, // per m², plint/jolly per meter
-    vloer:{pvcK:14,pvcL:18,lam:12,visgraat:28,level:12,plint:6},          // per m², plint per meter
+    vloer:{pvcK:14,pvcL:18,lam:12,visgraat:28,level:18,plint:6},          // per m², plint per meter
     verf:{wall:9,ceil:11,door:85,frame:35},                               // per m², deur/kozijn per stuk
     bad:{demo:1400,pipes:1600,toilet:450,vanity:350,shower:450,radiator:200}, // per onderdeel; tegels via tegel-tarief
     dak:{perM:1800,shutter:250,inside:900},                               // per meter breedte, rolluik per stuk
