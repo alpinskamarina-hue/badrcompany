@@ -226,3 +226,5 @@ a.card.card-cta{background:var(--ink);color:var(--paper);grid-template-rows:1fr}
 .prose .calc .res.main .k{color:var(--ink)}
 .prose .calc .small{font-size:13px;color:var(--stone);margin-top:14px}
 .prose .calc .btn{margin-top:12px;text-decoration:none;color:var(--paper)}
+.prose .post-video{max-width:380px;margin-inline:auto}
+.prose .post-video video{width:100%;height:auto;aspect-ratio:464/848;border-radius:12px;display:block;background:var(--ink)}
