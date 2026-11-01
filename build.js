@@ -129,6 +129,45 @@ ${p.body.trim()}
 <section class="related"><div class="wrap"><div class="related-head"><h2 class="title-md">${t.related}</h2><a class="link-arrow" href="${t.blog}">${t.allPosts}</a></div><div class="blog-grid">${others}</div></div></section>`;
 }
 
+const stripTags = s => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+
+// GEO: BreadcrumbList from the visible crumbs, FAQPage from the visible <details class="faq-item"> blocks.
+function crumbsLd(body) {
+  const nav = (body.match(/<nav class="crumbs"[^>]*>([\s\S]*?)<\/nav>/) || [])[1];
+  if (!nav) return null;
+  const items = [];
+  nav.replace(/<a href="([^"]+)">([^<]+)<\/a>|<span>([^<\/][^<]*)<\/span>/g, (all, href, txt, last) => {
+    if (href) items.push({ name: stripTags(txt), item: SITE + (href === '/' ? '/' : href) });
+    else if (last && last.trim() !== '/') items.push({ name: stripTags(last) });
+    return all;
+  });
+  if (items.length < 2) return null;
+  return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items.map((it, i) => Object.assign({ '@type': 'ListItem', position: i + 1, name: it.name }, it.item ? { item: it.item } : {})) };
+}
+function faqLd(body) {
+  const qs = [];
+  body.replace(/<details class="faq-item"[^>]*><summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g, (all, q, a) => {
+    qs.push({ '@type': 'Question', name: stripTags(q), acceptedAnswer: { '@type': 'Answer', text: stripTags(a) } });
+    return all;
+  });
+  return qs.length ? { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: qs } : null;
+}
+const AUTHOR = { '@type': 'Person', name: 'Nasim', jobTitle: 'Oprichter', worksFor: { '@type': 'Organization', name: 'Badr Company', url: SITE + '/' } };
+
+function pageLd(meta, lang, posts, body) {
+  const base = jsonld(meta, lang, posts);
+  if (meta.type === 'post') return base;
+  const out = base ? [base] : [];
+  const isService = /^\/(diensten|en\/services)\//.test(meta.path || '');
+  if (isService) {
+    const h1 = stripTags((body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || meta.title);
+    out.push({ '@context': 'https://schema.org', '@type': 'Service', name: h1, serviceType: h1, description: meta.desc, url: SITE + meta.path, inLanguage: lang, areaServed: { '@type': 'Country', name: 'Nederland' }, provider: { '@type': 'HomeAndConstructionBusiness', name: 'Badr Company', url: SITE + '/', telephone: '+31634253000' } });
+  }
+  if (meta.path !== '/' && meta.path !== '/en') { const bc = crumbsLd(body); if (bc) out.push(bc); }
+  if (isService || /^\/(faq|en\/faq)$/.test(meta.path || '')) { const fq = faqLd(body); if (fq) out.push(fq); }
+  return out.length ? (out.length === 1 ? out[0] : out) : null;
+}
+
 function jsonld(meta, lang, posts) {
   if (meta.type === 'post') return { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: meta.title, description: meta.desc, datePublished: meta.date, image: imgUrl(meta.image), inLanguage: lang, author: { '@type': 'Organization', name: 'Badr Company' }, publisher: { '@type': 'Organization', name: 'Badr Company' }, mainEntityOfPage: SITE + meta.path };
   if (meta.jsonld === 'business') return { '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', name: 'Badr Company', url: SITE + '/', telephone: '+31634253000', email: 'Badrkomp@gmail.com', image: imgUrl('photo-1772797583328-f83bc3f94f80'), legalName: CO.name, address: Object.assign({ '@type': 'PostalAddress', addressLocality: CO.city, addressCountry: 'NL' }, CO.street ? { streetAddress: CO.street } : {}, CO.postcode ? { postalCode: CO.postcode } : {}), ...(CO.btw ? { vatID: CO.btw } : {}), areaServed: { '@type': 'Country', name: 'Nederland' }, openingHours: 'Mo-Sa 07:30-18:00', priceRange: '€€' };
@@ -145,7 +184,7 @@ function page(p, lang, posts) {
   const title = m.path === '/' || m.path === '/en' ? m.title : `${m.title} | Badr Company`;
   const nlPath = lang === 'nl' ? m.path : (m.alt || '/'), enPath = lang === 'en' ? m.path : (m.alt || '/en');
   const ogImg = imgUrl(m.image || 'photo-1772797583328-f83bc3f94f80').replace('w=1600', 'w=1200');
-  const ld = jsonld(m, lang, posts);
+  const ld = pageLd(m, lang, posts, body);
   const js = ['<script>try{localStorage.setItem("badr-lang","' + lang + '")}catch(e){}</script>', '<script src="/js/s1.js"></script>'];
   if (scripts.includes('three')) js.push('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>');
   js.push('<script src="/js/s2.js"></script>');
