@@ -169,7 +169,7 @@ function pageLd(meta, lang, posts, body) {
 }
 
 function jsonld(meta, lang, posts) {
-  if (meta.type === 'post') return { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: meta.title, description: meta.desc, datePublished: meta.date, image: imgUrl(meta.image), inLanguage: lang, author: { '@type': 'Organization', name: 'Badr Company' }, publisher: { '@type': 'Organization', name: 'Badr Company' }, mainEntityOfPage: SITE + meta.path };
+  if (meta.type === 'post') return { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: meta.title, description: meta.desc, datePublished: meta.date, image: imgUrl(meta.image), inLanguage: lang, author: AUTHOR, publisher: { '@type': 'Organization', name: 'Badr Company' }, mainEntityOfPage: SITE + meta.path };
   if (meta.jsonld === 'business') return { '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', name: 'Badr Company', url: SITE + '/', telephone: '+31634253000', email: 'Badrkomp@gmail.com', image: imgUrl('photo-1772797583328-f83bc3f94f80'), legalName: CO.name, address: Object.assign({ '@type': 'PostalAddress', addressLocality: CO.city, addressCountry: 'NL' }, CO.street ? { streetAddress: CO.street } : {}, CO.postcode ? { postalCode: CO.postcode } : {}), ...(CO.btw ? { vatID: CO.btw } : {}), areaServed: { '@type': 'Country', name: 'Nederland' }, openingHours: 'Mo-Sa 07:30-18:00', priceRange: '€€' };
   return null;
 }
