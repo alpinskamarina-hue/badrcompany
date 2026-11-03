@@ -213,6 +213,7 @@ a.card.card-cta{background:var(--ink);color:var(--paper);grid-template-rows:1fr}
 .prose .calc .row{display:flex;gap:12px;align-items:center}
 .prose .calc input[type=range]{flex:1;min-width:0;accent-color:var(--yellow-d)}
 .prose .calc input[type=number]{width:90px;padding:8px;border:1px solid var(--line);border-radius:8px;font:700 16px var(--font-body)}
+.prose .calc select{max-width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font:700 16px var(--font-body)}
 .prose .calc .out{font-weight:800;min-width:56px;text-align:right}
 .prose .calc .check{display:flex;gap:8px;align-items:flex-start;font-size:15px}
 .prose .calc .check label{font-weight:400}
